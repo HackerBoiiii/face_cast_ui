@@ -1,3 +1,4 @@
+import 'package:face_cast_ui/friendsfollowingscreens/friendfollowingscreens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -36,9 +37,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => FriendScreen(),));
+        },
+      ),
       body: DefaultTabController(
         initialIndex: intialindex,
-        length: 3,
+        length: 2,
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -58,6 +65,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: EdgeInsets.only(left: 5, bottom: 30),
                       child: Row(
                         children: [
+                          Icon(Icons.arrow_back_ios),
+                          SizedBox(
+                            width: 25,
+                          ),
+
                           Text(
                             'Recharge',
                             style: TextStyle(
@@ -82,27 +94,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(bottom: 30),
-                      child: Row(
-                        children: [
-                          Text(
-                            'History',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal),
-                          )
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
           ),
           body: TabBarView(
-            children: [BuiltRecharge(), BuiltIcome(), BuiltHistory()],
+            children: [BuiltRecharge(), BuiltIcome(),],
           ),
         ),
       ),
@@ -855,46 +853,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ]),
-    );
-  }
-
-  Widget BuiltHistory() {
-    Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body:Column(
-        children: <Widget>[
-        SizedBox( // Horizontal ListView
-        height: 30,
-        child: ListView.builder(
-          itemCount: 1,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Container(
-              color: Colors.black12,
-              height: 200,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('All'),SizedBox(width: 10,),
-                  Text('Entertainment'),SizedBox(width: 10,),
-                  Text('Videoes'),SizedBox(width: 10,),
-                  Text('Live'),SizedBox(width: 10,),
-                  Text('1-On-1',),SizedBox(width: 10,),
-                  Text('Gift sent'),SizedBox(width: 10,),
-                  Text('Gift received '),SizedBox(width: 10,),
-                  Text('Recharge'),SizedBox(width: 10,),
-                  Text('Chat'),SizedBox(width: 10,),
-                  Text('Dating'),SizedBox(width: 10,),
-                ],
-
-              ),
-            );
-          },
-        ),
-      ),
-  ]
-    )
     );
   }
 }
